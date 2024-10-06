@@ -1,28 +1,8 @@
 {
   "hosting": {
-    "public": "dist/firebase-blog-app",
+    "public": "dist/firebase-blog-app/browser",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
-      {
-        "source": "/home",
-        "destination": "/index.html"
-      },
-      {
-        "source": "/blog-form",
-        "destination": "/index.html"
-      },
-      {
-        "source": "/login",
-        "destination": "/index.html"
-      },
-      {
-        "source": "/profile",
-        "destination": "/index.html"
-      },
-      {
-        "source": "/register",
-        "destination": "/index.html"
-      },
       {
         "source": "**",
         "destination": "/index.html"
