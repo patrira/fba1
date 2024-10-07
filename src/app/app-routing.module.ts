@@ -13,11 +13,7 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full',
   },
-  {
-    path:"**",
-    redirectTo: 'home',
-    pathMatch: 'full',
-  },
+  
   { path: 'home', component: HomeComponent },
   { path: 'blog-form', component: BlogFormComponent },
   { path: 'register', component: RegisterComponent },
