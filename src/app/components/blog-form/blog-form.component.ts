@@ -68,18 +68,18 @@ export class BlogFormComponent implements OnInit, OnChanges {
         .updatePost(postData.id, postData)
         .then(() => {
           console.log('Post updated successfully');
-          this.closeModal.emit(); // Emit close modal event
+          this.closeModal.emit(); 
         })
         .catch((err) => {
           console.error('Error updating post', err);
         });
     } else {
-      // Create new post
+      // Creating new post
       this.blogService
         .createPost(postData)
         .then(() => {
           console.log('Post created successfully');
-          this.router.navigate(['/']); // Navigate to home on success
+          this.router.navigate(['/']); 
         })
         .catch((err) => {
           console.error('Error creating post', err);
@@ -88,6 +88,6 @@ export class BlogFormComponent implements OnInit, OnChanges {
   }
 
   onCancel() {
-    this.closeModal.emit(); // Emit close modal event when canceled
+    this.closeModal.emit(); 
   }
 }
