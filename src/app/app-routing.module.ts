@@ -5,6 +5,7 @@ import { BlogFormComponent } from './components/blog-form/blog-form.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { SingleBlogComponent } from './pages/single-blog/single-blog.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'blog/:id', component: SingleBlogComponent },
   {
     path: '',
     redirectTo: 'home',

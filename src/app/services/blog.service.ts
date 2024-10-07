@@ -2,25 +2,24 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
-import firebase from 'firebase/compat/app'; 
+import firebase from 'firebase/compat/app';
+import { Post } from '../pages/models/post.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BlogService {
-  private collectionPath = 'blogPosts'; 
+  private collectionPath = 'blogPosts';
 
   constructor(
     private firestore: AngularFirestore,
     private authService: AuthService
   ) {}
 
-  
   createPost(post: any) {
     return this.firestore.collection(this.collectionPath).add(post);
   }
 
-  
   getPosts(): Observable<any[]> {
     return this.firestore
       .collection(this.collectionPath, (ref) =>
@@ -64,6 +63,12 @@ export class BlogService {
       .collection(`${this.collectionPath}/${postId}/comments`, (ref) =>
         ref.orderBy('createdAt', 'asc')
       )
+      .valueChanges();
+  }
+  getPostById(postId: string): Observable<Post | undefined> {
+    return this.firestore
+      .collection(this.collectionPath)
+      .doc<Post>(postId)
       .valueChanges();
   }
 }

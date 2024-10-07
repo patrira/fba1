@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import {
   BrowserModule,
   provideClientHydration,
@@ -17,6 +17,8 @@ import { BlogListComponent } from './components/blog-list/blog-list.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { environment } from '../environements/environement';
+import { SingleBlogComponent } from './pages/single-blog/single-blog.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { environment } from '../environements/environement';
     BlogListComponent,
     LoginComponent,
     RegisterComponent,
+    SingleBlogComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +39,12 @@ import { environment } from '../environements/environement';
     AngularFirestoreModule,
     FormsModule,
     ReactiveFormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [provideClientHydration()],
   bootstrap: [AppComponent],

@@ -16,6 +16,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   newComment: { [key: string]: string } = {};
   selectedPost: any = null; // For Read More modal
   authSubscription!: Subscription;
+  showUpdateModal = false;
+  showReadMoreModal = false;
+  selectUpdate: any = null;
 
   constructor(
     private blogService: BlogService,
@@ -82,9 +85,11 @@ export class HomeComponent implements OnInit, OnDestroy {
       });
   }
 
-  // Update a blog post (navigate to blog form for editing)
-  updatePost(post: any) {
-    this.router.navigate(['/blog-form'], { state: { post } });
+  // Update a blog post (open update modal)
+  openUpdateModal(post: any) {
+    this.selectUpdate = post; // Set the post for updating
+    this.showUpdateModal = true; // Show the update modal
+    this.showReadMoreModal = false; // Ensure the Read More modal is hidden
   }
 
   // Add comment to a post
@@ -116,13 +121,20 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   // Read more (Show full post in modal)
   readMore(post: any) {
-    this.selectedPost = post;
+    this.selectedPost = post; // Set the post for reading more
+    this.showReadMoreModal = true; // Show the read more modal
+    this.showUpdateModal = false; // Ensure the update modal is hidden
   }
 
-  // Close Read More modal and navigate back to home
+  // Close both Read More and Update modals
   closeModal() {
-    this.selectedPost = null;
-    this.router.navigate(['/home']);
+    this.showUpdateModal = false; // Hide update modal
+    this.showReadMoreModal = false; // Hide read more modal
+    this.selectedPost = null; // Reset the selected post
+  }
+  closeUpdateModal() {
+    this.showUpdateModal = false;
+    this.selectUpdate = null; // Reset the selected post
   }
 
   // Logout user and redirect to home

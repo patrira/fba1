@@ -1,10 +1,10 @@
 {
   "hosting": {
-    "public": "dist/firebase-blog-app/browser",
+    "public": "dist/firebase-blog-app",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
-        "source": "**",
+        "source": "home",
         "destination": "/index.html"
       }
     ]

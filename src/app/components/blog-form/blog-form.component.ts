@@ -1,4 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BlogService } from '../../services/blog.service';
 import { Router } from '@angular/router';
@@ -8,14 +16,16 @@ import { Router } from '@angular/router';
   templateUrl: './blog-form.component.html',
   styleUrls: ['./blog-form.component.css'],
 })
-export class BlogFormComponent implements OnInit {
+export class BlogFormComponent implements OnInit, OnChanges {
+  @Input() post: any; // Receive the post as input
+  @Output() closeModal = new EventEmitter<void>(); // Emit an event to close the modal
   blogForm: FormGroup;
   submitted = false;
 
   constructor(
     private fb: FormBuilder,
     private blogService: BlogService,
-    public router: Router
+    private router: Router
   ) {
     this.blogForm = this.fb.group({
       title: ['', Validators.required],
@@ -28,11 +38,14 @@ export class BlogFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    const state = this.router.getCurrentNavigation()?.extras.state as {
-      post: any;
-    };
-    if (state && state.post) {
-      this.blogForm.patchValue(state.post);
+    if (this.post) {
+      this.blogForm.patchValue(this.post); // Patch the form with post data if available
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['post'] && changes['post'].currentValue) {
+      this.blogForm.patchValue(this.post); // Update the form with the new post data
     }
   }
 
@@ -54,7 +67,8 @@ export class BlogFormComponent implements OnInit {
       this.blogService
         .updatePost(postData.id, postData)
         .then(() => {
-          this.router.navigate(['/home']);
+          console.log('Post updated successfully');
+          this.closeModal.emit(); // Emit close modal event
         })
         .catch((err) => {
           console.error('Error updating post', err);
@@ -64,11 +78,16 @@ export class BlogFormComponent implements OnInit {
       this.blogService
         .createPost(postData)
         .then(() => {
-          this.router.navigate(['/home']);
+          console.log('Post created successfully');
+          this.router.navigate(['/']); // Navigate to home on success
         })
         .catch((err) => {
           console.error('Error creating post', err);
         });
     }
+  }
+
+  onCancel() {
+    this.closeModal.emit(); // Emit close modal event when canceled
   }
 }
