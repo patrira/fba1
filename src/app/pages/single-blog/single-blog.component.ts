@@ -27,7 +27,7 @@ export class SingleBlogComponent implements OnInit {
           this.post = data;
         } else {
           console.error('Post not found');
-          this.router.navigate(['/']); // Navigate back if post is not found
+          this.router.navigate(['/']); 
         }
       });
     } else {
