@@ -12,31 +12,31 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 ## Features
-# 1.Firebase Authentication
+### 1.Firebase Authentication
 
 Email/password registration and login
 Google sign-in option
 User profile page
 Firestore Database
 
-# 2.CRUD operations for blog posts
+### 2.CRUD operations for blog posts
 Real-time listeners for comments
 SEO Optimization
 
-# 3.Angular Universal for Server-Side Rendering (SSR)
+### 3.Angular Universal for Server-Side Rendering (SSR)
 Dynamic meta tags for blog posts
 Structured data for blog posts
-# 4.Progressive Web App (PWA)
+### 4.Progressive Web App (PWA)
 
 Offline access to previously viewed blog posts
 Service worker and manifest.json implementation
 Firebase Analytics
 
-# 5.Track page views
+### 5.Track page views
 Custom events for user interactions
 Deployment
 
-# 6.Deployed on Firebase Hosting
+### 6.Deployed on Firebase Hosting
 (Optional) Custom domain setup
 
 ## Build
