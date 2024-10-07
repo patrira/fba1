@@ -104,10 +104,13 @@
 
       <!-- Submit Button -->
       <button
-        class="w-full bg-green-500 text-white font-bold py-3 rounded-lg hover:bg-green-600 transition"
+        class="w-full bg-yellow-500 text-white font-bold py-3 rounded-lg hover:bg-yellow-600 transition"
       >
         Sign Up
       </button>
+      <div class="mt-4 text-center">
+        <p>Already have an account? <a routerLink="/login" class="text-yellow-300 hover:underline">login here</a></p>
+      </div>
 
       <div *ngIf="registerError" class="text-red-500 text-sm mt-3 text-center">
         {{ registerError }}
