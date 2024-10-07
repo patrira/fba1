@@ -17,8 +17,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./blog-form.component.css'],
 })
 export class BlogFormComponent implements OnInit, OnChanges {
-  @Input() post: any; // Receive the post as input
-  @Output() closeModal = new EventEmitter<void>(); // Emit an event to close the modal
+  @Input() post: any; 
+  @Output() closeModal = new EventEmitter<void>(); 
   blogForm: FormGroup;
   submitted = false;
 
@@ -39,13 +39,13 @@ export class BlogFormComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     if (this.post) {
-      this.blogForm.patchValue(this.post); // Patch the form with post data if available
+      this.blogForm.patchValue(this.post); 
     }
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['post'] && changes['post'].currentValue) {
-      this.blogForm.patchValue(this.post); // Update the form with the new post data
+      this.blogForm.patchValue(this.post); 
     }
   }
 

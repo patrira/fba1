@@ -8,17 +8,23 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { SingleBlogComponent } from './pages/single-blog/single-blog.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full',
+  },
+  {
+    path:"**",
+    redirectTo: 'home',
+    pathMatch: 'full',
+  },
   { path: 'home', component: HomeComponent },
   { path: 'blog-form', component: BlogFormComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'blog/:id', component: SingleBlogComponent },
-  {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full',
-  },
+  
 ];
 
 @NgModule({
